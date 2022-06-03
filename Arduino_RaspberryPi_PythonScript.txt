@@ -1,0 +1,44 @@
+
+import pyrebase
+import serial
+from time import sleep
+
+arduino = serial.Serial('/dev/ttyACM0', 9600)
+config = {     
+  "apiKey": "AIzaSyAP-t1LpZ4TUTwv55SMG66alaO-s8PZUIA",
+  "authDomain": "hello-world-c1c6d.firebaseapp.com",
+  "databaseURL": "https://hello-world-c1c6d-default-rtdb.firebaseio.com/",
+  "storageBucket": "hello-world-c1c6d.appspot.com"
+}
+
+firebase = pyrebase.initialize_app(config)
+db = firebase.database()
+
+cont  = 0
+temp  = 0
+press = 0
+water = 0
+while True:
+    cont = cont + 1
+    #db.child("Sensors").child("Huerto").update({"Temperatura": cont})
+    #sleep(2)
+    cadena = arduino.readline()
+    if(cadena.decode() != ''):
+        #cadena.removesuffix('\n')
+        cadena = cadena.decode()
+        cadena =cadena.strip()
+        temp = float(cadena[0:5])
+        hum = float(cadena[5:10])
+        water = float(cadena[10:15])
+        
+        #print(temp)
+        #print(press)
+        #print(water)
+        
+        db.child("Sensors").child("Huerto").update({"Temperatura": temp})
+        db.child("Sensors").child("Huerto").update({"Humedad": hum})
+        db.child("Sensors").child("Huerto").update({"Agua": water})
+        
+        #print(cadena)
+    sleep(0.1) 
+arduino.close()
