@@ -1,0 +1,44 @@
+.App{
+  width: 100%;
+  height: 100%;
+}
+
+.huerto_page{
+  background-color: #0A1929;
+  height: 100vh;
+  padding-top: 15px;
+  padding-bottom: 12px;
+}
+
+.section_setup{
+  margin-top: 15px;
+}
+
+.font_color{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+}
+
+.text_middle_titlebar{
+  color: white;
+  padding-top: 5px;
+}
+
+.text_left_titlebar{
+  color: white;
+  padding-left: 20px;
+}
+
+.text_right_titlebar{
+  color: white;
+  padding-right: 20px;
+}
+
+.plot_pressure{
+  padding-bottom: 20px;
+}
+
+.center_gauge{
+  text-align: center;
+}
